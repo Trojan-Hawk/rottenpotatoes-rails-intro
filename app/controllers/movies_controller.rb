@@ -10,6 +10,11 @@ class MoviesController < ApplicationController
     # will render app/views/movies/show.<extension> by default
   end
 
+  def sort
+    param = params[:param] # retrieve movie ID from URI route
+    flash[:notice] = param + " is the value."
+  end
+
   def index
     @movies = Movie.all
   end
