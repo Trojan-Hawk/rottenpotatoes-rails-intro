@@ -12,7 +12,7 @@ class MoviesController < ApplicationController
 
   def sort
     param = params[:param] # retrieve movie ID from URI route
-    @movies = Movie.order(param)
+    @movies = Movie.all.order(param)
     index
   end
 
