@@ -12,7 +12,8 @@ class MoviesController < ApplicationController
 
   def sort
     param = params[:param] # retrieve movie ID from URI route
-    flash[:notice] = param + " is the value."
+    Movie.order(param)
+    index
   end
 
   def index
