@@ -11,13 +11,16 @@ class MoviesController < ApplicationController
   end
 
   def index
+    # if there is a sort param
     if(!params.has_key?(:sort))
+      # if there is a session, reload
       if(session.has_key?(:sort))
         redirect_to movies_path(:sort=>session[:sort])
       end
     end
+    # set the sort session
     @sort = params.has_key?(:sort) ? (session[:sort] = params[:sort]) : session[:sort]
-    
+    # order the movies
     @movies = Movie.order(session[:sort])
   end
 
