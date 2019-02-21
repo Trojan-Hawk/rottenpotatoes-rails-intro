@@ -10,13 +10,7 @@ class MoviesController < ApplicationController
     # will render app/views/movies/show.<extension> by default
   end
 
-  def sort
-    param = params[:sort] # retrieve movie ID from URI route
-    # sort the movies
-    @movies = Movie.order(orderby).all()
-    # display the movies
-    @movies = Movie.all
-  end
+  
 
   def index
     orderby = params[:sort] # retrieve movie ID from URI route
