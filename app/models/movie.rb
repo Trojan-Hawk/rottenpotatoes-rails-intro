@@ -1,6 +1,6 @@
 class Movie < ActiveRecord::Base
     # creating enumerable collection of all possible ratings
-    def self.with_ratings
+    def self.all_ratings
       result = {}
       
       # selecting each unique rating

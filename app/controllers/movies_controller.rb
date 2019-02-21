@@ -20,8 +20,27 @@ class MoviesController < ApplicationController
     end
     # set the sort session
     @sort = params.has_key?(:sort) ? (session[:sort] = params[:sort]) : session[:sort]
+    
+    @all_ratings = Movie.all_ratings.keys
+    @ratings = params[:ratings]
+    
+    if(@ratings != nil)
+      ratings = @ratings.keys
+      session[:ratings] = @ratings
+    else
+      if(!params.has_key?(:commit) && !params.has_key?(:sort))
+        ratings = Movie.all_ratings.keys
+        session[:ratings] = Movie.all_ratings
+      else
+        ratings = session[:ratings].keys
+      end
+    end
+    
     # order the movies
     @movies = Movie.order(session[:sort])
+    
+    # update the checked
+    @check = ratings
   end
 
   def new
