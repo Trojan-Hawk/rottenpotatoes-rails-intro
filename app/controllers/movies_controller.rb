@@ -15,7 +15,9 @@ class MoviesController < ApplicationController
     if(!params.has_key?(:sort) && !params.has_key?(:ratings))
       # if there is a session, reload
       if(session.has_key?(:sort) || session.has_key?(:ratings))
+        # display message after a redirect
         flash.keep
+        # redirect to the movies page
         redirect_to movies_path(:sort=>session[:sort], :ratings=>session[:ratings])
       end
     end
