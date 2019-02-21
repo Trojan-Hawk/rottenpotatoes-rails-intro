@@ -30,17 +30,19 @@ class MoviesController < ApplicationController
     else
       if(!params.has_key?(:commit) && !params.has_key?(:sort))
         ratings = Movie.all_ratings.keys
+        # store the session
         session[:ratings] = Movie.all_ratings
       else
+        # store the session
         ratings = session[:ratings].keys
       end
     end
     
-    # order the movies
-    @movies = Movie.order(session[:sort])
+    # generate the query
+    @movies = Movie.where(rating: session[:ratings].keys).order(session[:sort])
     
     # update the checked
-    @check = ratings
+    @mark = ratings
   end
 
   def new
